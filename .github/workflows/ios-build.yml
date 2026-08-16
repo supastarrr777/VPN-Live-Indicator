@@ -1,0 +1,36 @@
+name: Build iOS App
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    runs-on: macos-latest
+
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Select Xcode
+        run: sudo xcode-select -s /Applications/Xcode.app
+
+      - name: Show Xcode Version
+        run: xcodebuild -version
+
+      - name: Build
+
+        run: |
+          xcodebuild \
+          -project VPNLauncher.xcodeproj \
+          -scheme VPNLauncher \
+          -sdk iphoneos \
+          -configuration Release \
+          build
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: VPNLauncher
+          path: build
