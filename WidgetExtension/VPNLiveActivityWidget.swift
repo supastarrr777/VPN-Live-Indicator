@@ -12,7 +12,7 @@ struct VPNLiveActivityWidget: Widget {
             HStack(spacing: 12) {
                 Image(systemName: "globe")
                     .font(.title2)
-                    .foregroundStyle(.green)
+                    .foregroundStyle(.cyan)
 
                 Text("VPN")
                     .font(.headline)
@@ -37,7 +37,7 @@ struct VPNLiveActivityWidget: Widget {
                     HStack(spacing: 10) {
                         Image(systemName: "globe")
                             .font(.title2)
-                            .foregroundStyle(.green)
+                            .foregroundStyle(.cyan)
 
                         Text("VPN")
                             .font(.title3)
@@ -49,7 +49,7 @@ struct VPNLiveActivityWidget: Widget {
             } compactLeading: {
 
                 Image(systemName: "globe")
-                    .foregroundStyle(.green)
+                    .foregroundStyle(.cyan)
 
             } compactTrailing: {
 
@@ -61,9 +61,9 @@ struct VPNLiveActivityWidget: Widget {
             } minimal: {
 
                 Image(systemName: "globe")
-                    .foregroundStyle(.green)
+                    .foregroundStyle(.cyan)
             }
-            .keylineTint(.green)
+            .keylineTint(.cyan)
         }
     }
 }
