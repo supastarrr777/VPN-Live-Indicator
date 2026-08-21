@@ -6,12 +6,13 @@ import WidgetKit
 struct VPNLiveActivityWidget: Widget {
 
     var body: some WidgetConfiguration {
-        ActivityConfiguration(for: VPNAttributes.self) { context in
+        ActivityConfiguration(for: VPNAttributes.self) { _ in
 
             // Экран блокировки
             HStack(spacing: 12) {
                 Image(systemName: "lock.fill")
                     .font(.title2)
+                    .foregroundStyle(.green)
 
                 Text("VPN")
                     .font(.headline)
@@ -24,36 +25,34 @@ struct VPNLiveActivityWidget: Widget {
                     .foregroundStyle(.secondary)
             }
             .padding()
+            .foregroundStyle(.white)
             .activityBackgroundTint(.black.opacity(0.88))
             .activitySystemActionForegroundColor(.white)
-            .foregroundStyle(.white)
 
-        } dynamicIsland: { context in
+        } dynamicIsland: { _ in
 
             DynamicIsland {
 
-                // Расширенный вид после долгого нажатия
                 DynamicIslandExpandedRegion(.center) {
                     HStack(spacing: 10) {
                         Image(systemName: "lock.fill")
                             .font(.title2)
+                            .foregroundStyle(.green)
 
                         Text("VPN")
                             .font(.title3)
                             .fontWeight(.bold)
+                            .foregroundStyle(.white)
                     }
-                    .foregroundStyle(.white)
                 }
 
             } compactLeading: {
 
-                // Левая сторона Dynamic Island
                 Image(systemName: "lock.fill")
                     .foregroundStyle(.green)
 
             } compactTrailing: {
 
-                // Правая сторона Dynamic Island
                 Text("VPN")
                     .font(.caption)
                     .fontWeight(.bold)
@@ -61,11 +60,10 @@ struct VPNLiveActivityWidget: Widget {
 
             } minimal: {
 
-                // Когда одновременно работают несколько Live Activities
                 Image(systemName: "lock.fill")
                     .foregroundStyle(.green)
             }
             .keylineTint(.green)
         }
-    
+    }
 }
