@@ -1,47 +1,55 @@
 import ActivityKit
 import Foundation
 
+@MainActor
 final class VPNActivityManager {
 
     static let shared = VPNActivityManager()
 
     private init() {}
 
-    var currentActivity: Activity<VPNAttributes>?
+    func start() async {
 
-    func start() {
+        guard ActivityAuthorizationInfo().areActivitiesEnabled else {
+            print("Live Activities are disabled")
+            return
+        }
 
-        let attributes = VPNAttributes(
-            title: "VPN"
-        )
+        // Не создаём второй индикатор, если один уже работает
+        guard Activity<VPNAttributes>.activities.isEmpty else {
+            return
+        }
+
+        let attributes = VPNAttributes(title: "VPN")
 
         let state = VPNAttributes.ContentState(
             isVisible: true
         )
 
+        let content = ActivityContent(
+            state: state,
+            staleDate: nil
+        )
+
         do {
-
-            currentActivity = try Activity.request(
+            _ = try Activity<VPNAttributes>.request(
                 attributes: attributes,
-                contentState: state
+                content: content,
+                pushType: nil
             )
-
         } catch {
-
-            print(error.localizedDescription)
+            print("Live Activity error: \(error.localizedDescription)")
         }
     }
 
-    func stop() {
+    func stop() async {
 
-        Task {
-
-            await currentActivity?.end(
+        // Завершаем все индикаторы, включая созданные до перезапуска приложения
+        for activity in Activity<VPNAttributes>.activities {
+            await activity.end(
                 nil,
                 dismissalPolicy: .immediate
             )
-
-            currentActivity = nil
         }
     }
 }
