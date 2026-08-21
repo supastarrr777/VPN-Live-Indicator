@@ -10,7 +10,7 @@ struct VPNLiveActivityWidget: Widget {
 
             // Экран блокировки
             HStack(spacing: 12) {
-                Image(systemName: "lock.fill")
+                Image(systemName: "globe")
                     .font(.title2)
                     .foregroundStyle(.green)
 
@@ -35,7 +35,7 @@ struct VPNLiveActivityWidget: Widget {
 
                 DynamicIslandExpandedRegion(.center) {
                     HStack(spacing: 10) {
-                        Image(systemName: "lock.fill")
+                        Image(systemName: "globe")
                             .font(.title2)
                             .foregroundStyle(.green)
 
@@ -48,7 +48,7 @@ struct VPNLiveActivityWidget: Widget {
 
             } compactLeading: {
 
-                Image(systemName: "lock.fill")
+                Image(systemName: "globe")
                     .foregroundStyle(.green)
 
             } compactTrailing: {
@@ -60,7 +60,7 @@ struct VPNLiveActivityWidget: Widget {
 
             } minimal: {
 
-                Image(systemName: "lock.fill")
+                Image(systemName: "globe")
                     .foregroundStyle(.green)
             }
             .keylineTint(.green)
