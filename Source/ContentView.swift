@@ -36,7 +36,7 @@ struct ContentView: View {
             )
         }
         .task {
-            await VPNActivityManager.shared.start()
+            await VPNActivityManager.shared.toggle()
         }
     }
 }
