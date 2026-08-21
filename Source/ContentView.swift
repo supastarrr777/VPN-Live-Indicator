@@ -16,7 +16,7 @@ struct ContentView: View {
             .ignoresSafeArea()
 
             VStack(spacing: 18) {
-                Image(systemName: "lock.fill")
+                Image(systemName: "globe")
                     .font(.system(size: 52, weight: .semibold))
                     .symbolRenderingMode(.hierarchical)
 
