@@ -8,19 +8,37 @@ final class VPNActivityManager {
 
     private init() {}
 
-    func start() async {
+    func toggle() async {
 
         guard ActivityAuthorizationInfo().areActivitiesEnabled else {
             print("Live Activities are disabled")
             return
         }
 
-        // Не создаём второй индикатор, если один уже работает
-        guard Activity<VPNAttributes>.activities.isEmpty else {
+        let existingActivities =
+            Activity<VPNAttributes>.activities
+
+        // Если уже есть Live Activity —
+        // завершаем её
+
+        if !existingActivities.isEmpty {
+
+            for activity in existingActivities {
+
+                await activity.end(
+                    nil,
+                    dismissalPolicy: .immediate
+                )
+            }
+
             return
         }
 
-        let attributes = VPNAttributes(title: "VPN")
+        // Иначе создаём новую
+
+        let attributes = VPNAttributes(
+            title: "VPN"
+        )
 
         let state = VPNAttributes.ContentState(
             isVisible: true
@@ -32,23 +50,17 @@ final class VPNActivityManager {
         )
 
         do {
+
             _ = try Activity<VPNAttributes>.request(
                 attributes: attributes,
                 content: content,
                 pushType: nil
             )
+
         } catch {
-            print("Live Activity error: \(error.localizedDescription)")
-        }
-    }
 
-    func stop() async {
-
-        // Завершаем все индикаторы, включая созданные до перезапуска приложения
-        for activity in Activity<VPNAttributes>.activities {
-            await activity.end(
-                nil,
-                dismissalPolicy: .immediate
+            print(
+                "Live Activity error: \(error.localizedDescription)"
             )
         }
     }
