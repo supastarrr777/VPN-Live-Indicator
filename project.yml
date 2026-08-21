@@ -21,7 +21,8 @@ targets:
       - path: Source
         excludes:
           - Info.plist
-          - .gitkeep
+      
+      - path: Assets.xcassets
 
     settings:
       base:
@@ -29,7 +30,7 @@ targets:
         PRODUCT_NAME: VPNLiveIndicator
         INFOPLIST_FILE: Source/Info.plist
         GENERATE_INFOPLIST_FILE: false
-        SUPPORTS_LIVE_ACTIVITIES: true
+        SUPPORTS_LIVE_ACTIVITIES: true  
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
 
     dependencies:
