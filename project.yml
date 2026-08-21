@@ -1,0 +1,57 @@
+name: VPNLiveIndicator
+
+options:
+  bundleIdPrefix: com.supastarrr777
+  deploymentTarget:
+    iOS: "26.0"
+  createIntermediateGroups: true
+
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    TARGETED_DEVICE_FAMILY: "1"
+    IPHONEOS_DEPLOYMENT_TARGET: "26.0"
+
+targets:
+  VPNLiveIndicator:
+    type: application
+    platform: iOS
+
+    sources:
+      - path: Source
+        excludes:
+          - Info.plist
+          - .gitkeep
+
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.supastarrr777.VPNLiveIndicator
+        PRODUCT_NAME: VPNLiveIndicator
+        INFOPLIST_FILE: Source/Info.plist
+        GENERATE_INFOPLIST_FILE: false
+        SUPPORTS_LIVE_ACTIVITIES: true
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+
+    dependencies:
+      - target: VPNLiveIndicatorWidget
+        embed: true
+
+    scheme:
+      gatherCoverageData: false
+
+  VPNLiveIndicatorWidget:
+    type: app-extension
+    platform: iOS
+
+    sources:
+      - path: WidgetExtension/VPNLiveActivityWidget.swift
+      - path: Source/ActivityKit/VPNAttributes.swift
+
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.supastarrr777.VPNLiveIndicator.Widget
+        PRODUCT_NAME: VPNLiveIndicatorWidget
+        INFOPLIST_FILE: WidgetExtension/Info.plist
+        GENERATE_INFOPLIST_FILE: false
+        SKIP_INSTALL: true
+        APPLICATION_EXTENSION_API_ONLY: true
