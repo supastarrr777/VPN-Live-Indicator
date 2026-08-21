@@ -1,2 +1,11 @@
-# VPNLauncher
-An iOS 26 app to show VPN connection via Live Activities and Dynamic Island
+# VPN Live Indicator
+
+Personal iOS application for Dynamic Island and Live Activities.
+
+Features:
+
+- Start Live Activity
+- Show 🔒 VPN in Dynamic Island
+- Stop Live Activity
+- Launch from app icon
+- Launch from Shortcuts
