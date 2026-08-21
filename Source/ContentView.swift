@@ -2,8 +2,13 @@ import SwiftUI
 
 struct ContentView: View {
 
+    @Environment(\.scenePhase)
+    private var scenePhase
+
     var body: some View {
+
         ZStack {
+
             LinearGradient(
                 colors: [
                     Color.blue.opacity(0.35),
@@ -16,16 +21,19 @@ struct ContentView: View {
             .ignoresSafeArea()
 
             VStack(spacing: 18) {
+
                 Image(systemName: "globe")
                     .font(.system(size: 52, weight: .semibold))
                     .symbolRenderingMode(.hierarchical)
 
                 Text("VPN")
-                    .font(.system(
-                        size: 30,
-                        weight: .bold,
-                        design: .rounded
-                    ))
+                    .font(
+                        .system(
+                            size: 30,
+                            weight: .bold,
+                            design: .rounded
+                        )
+                    )
             }
             .foregroundStyle(.white)
             .padding(.horizontal, 60)
@@ -35,8 +43,14 @@ struct ContentView: View {
                 in: .rect(cornerRadius: 36)
             )
         }
-        .task {
-            await VPNActivityManager.shared.toggle()
+        .onChange(of: scenePhase) { _, phase in
+
+            if phase == .active {
+
+                Task {
+                    await VPNActivityManager.shared.toggle()
+                }
+            }
         }
     }
 }
