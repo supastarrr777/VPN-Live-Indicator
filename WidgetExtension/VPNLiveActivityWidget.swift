@@ -68,3 +68,4 @@ struct VPNLiveActivityWidget: Widget {
             .keylineTint(.green)
         }
     
+}
