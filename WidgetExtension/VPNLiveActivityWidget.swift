@@ -15,13 +15,9 @@ struct VPNLiveActivityWidget: Widget {
                     .font(.title2)
                     .foregroundStyle(.cyan)
 
-                VStack(alignment: .leading, spacing: 2) {
-
-                    Text("VPN")
-                        .font(.headline)
-                        .fontWeight(.bold)
-                    
-                }
+                Text("VPN")
+                    .font(.headline)
+                    .fontWeight(.bold)
 
                 Spacer()
 
@@ -33,10 +29,6 @@ struct VPNLiveActivityWidget: Widget {
             .foregroundStyle(.white)
             .activityBackgroundTint(.black.opacity(0.88))
             .activitySystemActionForegroundColor(.white)
-
-            .widgetURL(
-                URL(string: "prefs:root=VPN")
-            )
 
         } dynamicIsland: { _ in
 
@@ -50,14 +42,10 @@ struct VPNLiveActivityWidget: Widget {
                             .font(.title2)
                             .foregroundStyle(.cyan)
 
-                        VStack(spacing: 2) {
-
-                            Text("VPN")
-                                .font(.title3)
-                                .fontWeight(.bold)
-                                .foregroundStyle(.white)
-                            
-                        }
+                        Text("VPN")
+                            .font(.title3)
+                            .fontWeight(.bold)
+                            .foregroundStyle(.white)
                     }
                 }
 
@@ -79,10 +67,6 @@ struct VPNLiveActivityWidget: Widget {
                     .foregroundStyle(.cyan)
             }
             .keylineTint(.cyan)
-
-            .widgetURL(
-                URL(string: "prefs:root=VPN")
-            )
         }
     }
 }
