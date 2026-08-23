@@ -6,17 +6,25 @@ import WidgetKit
 struct VPNLiveActivityWidget: Widget {
 
     var body: some WidgetConfiguration {
+
         ActivityConfiguration(for: VPNAttributes.self) { _ in
 
-            // Экран блокировки
             HStack(spacing: 12) {
+
                 Image(systemName: "globe")
                     .font(.title2)
                     .foregroundStyle(.cyan)
 
-                Text("VPN")
-                    .font(.headline)
-                    .fontWeight(.bold)
+                VStack(alignment: .leading, spacing: 2) {
+
+                    Text("VPN")
+                        .font(.headline)
+                        .fontWeight(.bold)
+
+                    Text("Indicator")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
 
                 Spacer()
 
@@ -29,20 +37,33 @@ struct VPNLiveActivityWidget: Widget {
             .activityBackgroundTint(.black.opacity(0.88))
             .activitySystemActionForegroundColor(.white)
 
+            .widgetURL(
+                URL(string: "App-Prefs:")
+            )
+
         } dynamicIsland: { _ in
 
             DynamicIsland {
 
                 DynamicIslandExpandedRegion(.center) {
+
                     HStack(spacing: 10) {
+
                         Image(systemName: "globe")
                             .font(.title2)
                             .foregroundStyle(.cyan)
 
-                        Text("VPN")
-                            .font(.title3)
-                            .fontWeight(.bold)
-                            .foregroundStyle(.white)
+                        VStack(spacing: 2) {
+
+                            Text("VPN")
+                                .font(.title3)
+                                .fontWeight(.bold)
+                                .foregroundStyle(.white)
+
+                            Text("Indicator")
+                                .font(.caption2)
+                                .foregroundStyle(.secondary)
+                        }
                     }
                 }
 
@@ -64,6 +85,10 @@ struct VPNLiveActivityWidget: Widget {
                     .foregroundStyle(.cyan)
             }
             .keylineTint(.cyan)
+
+            .widgetURL(
+                URL(string: "App-Prefs:")
+            )
         }
     }
 }
