@@ -17,7 +17,7 @@ struct ContentView: View {
             )
             .ignoresSafeArea()
 
-            VStack(spacing: 18) {
+            VStack(spacing: 12) {
 
                 Image(systemName: "globe")
                     .font(
@@ -39,12 +39,24 @@ struct ContentView: View {
                         )
                     )
 
-                Text("Manual Test Mode")
-                    .font(.caption)
+                Text("Indicator")
+                    .font(
+                        .system(
+                            size: 20,
+                            weight: .medium,
+                            design: .rounded
+                        )
+                    )
             }
             .foregroundStyle(.white)
             .padding(.horizontal, 60)
             .padding(.vertical, 44)
+
+            // затемняем стеклянную панель примерно на 25%
+            .background(
+                Color.black.opacity(0.25)
+            )
+
             .glassEffect(
                 .regular,
                 in: .rect(
