@@ -69,7 +69,7 @@ struct ContentView: View {
             if phase == .active {
 
                 if let url = URL(
-                    string: "https://apple.com"
+                    string: "prefs:root=General&path=VPN"
                 ) {
 
                     openURL(url)
