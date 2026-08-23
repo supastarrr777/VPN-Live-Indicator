@@ -35,7 +35,7 @@ struct VPNLiveActivityWidget: Widget {
             .activitySystemActionForegroundColor(.white)
 
             .widgetURL(
-                URL(string: "https://apple.com")
+                URL(string: "prefs:root=VPN")
             )
 
         } dynamicIsland: { _ in
@@ -81,7 +81,7 @@ struct VPNLiveActivityWidget: Widget {
             .keylineTint(.cyan)
 
             .widgetURL(
-                URL(string: "https://apple.com")
+                URL(string: "prefs:root=VPN")
             )
         }
     }
