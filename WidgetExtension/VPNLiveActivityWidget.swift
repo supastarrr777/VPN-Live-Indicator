@@ -20,10 +20,7 @@ struct VPNLiveActivityWidget: Widget {
                     Text("VPN")
                         .font(.headline)
                         .fontWeight(.bold)
-
-                    Text("Indicator")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
+                    
                 }
 
                 Spacer()
@@ -59,10 +56,7 @@ struct VPNLiveActivityWidget: Widget {
                                 .font(.title3)
                                 .fontWeight(.bold)
                                 .foregroundStyle(.white)
-
-                            Text("Indicator")
-                                .font(.caption2)
-                                .foregroundStyle(.secondary)
+                            
                         }
                     }
                 }
