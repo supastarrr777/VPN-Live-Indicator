@@ -1,6 +1,10 @@
 import SwiftUI
+import UIKit
 
 struct ContentView: View {
+
+    @Environment(\.scenePhase)
+    private var scenePhase
 
     var body: some View {
 
@@ -30,7 +34,7 @@ struct ContentView: View {
                         .hierarchical
                     )
 
-                Text("VPN Indicator")
+                Text("VPN")
                     .font(
                         .system(
                             size: 30,
@@ -39,22 +43,38 @@ struct ContentView: View {
                         )
                     )
 
-                Text("Use the Shortcut")
+                Text("Indicator")
                     .font(.subheadline)
-
-                Text("Toggle VPN Indicator")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
             }
             .foregroundStyle(.white)
             .padding(.horizontal, 60)
             .padding(.vertical, 44)
+            .background(
+                Color.black.opacity(0.25)
+            )
             .glassEffect(
                 .regular,
                 in: .rect(
                     cornerRadius: 36
                 )
             )
+        }
+        .onChange(of: scenePhase) { _, phase in
+
+            if phase == .active {
+
+                guard let url = URL(
+                    string: "prefs:root=VPN"
+                ) else {
+                    return
+                }
+
+                UIApplication.shared.open(
+                    url,
+                    options: [:],
+                    completionHandler: nil
+                )
+            }
         }
     }
 }
