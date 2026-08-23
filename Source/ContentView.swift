@@ -2,6 +2,9 @@ import SwiftUI
 
 struct ContentView: View {
 
+    @Environment(\.openURL)
+    private var openURL
+
     var body: some View {
 
         ZStack {
@@ -35,40 +38,17 @@ struct ContentView: View {
                             design: .rounded
                         )
                     )
-
-                Text("Indicator")
-                    .font(
-                        .system(
-                            size: 20,
-                            weight: .medium,
-                            design: .rounded
-                        )
-                    )
             }
             .foregroundStyle(.white)
-            .padding(.horizontal, 60)
-            .padding(.vertical, 44)
-            .background(
-                Color.black.opacity(0.25)
-            )
-            .glassEffect(
-                .regular,
-                in: .rect(
-                    cornerRadius: 36
-                )
-            )
         }
-        .onAppear {
+        .task {
 
-            guard let url = URL(
+            if let url = URL(
                 string: "https://apple.com"
-            ) else {
-                return
-            }
+            ) {
 
-            UIApplication.shared.open(
-                url
-            )
+                openURL(url)
+            }
         }
     }
 }
