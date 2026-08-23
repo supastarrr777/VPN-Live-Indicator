@@ -2,9 +2,6 @@ import SwiftUI
 
 struct ContentView: View {
 
-    @Environment(\.scenePhase)
-    private var scenePhase
-
     var body: some View {
 
         ZStack {
@@ -23,8 +20,15 @@ struct ContentView: View {
             VStack(spacing: 18) {
 
                 Image(systemName: "globe")
-                    .font(.system(size: 52, weight: .semibold))
-                    .symbolRenderingMode(.hierarchical)
+                    .font(
+                        .system(
+                            size: 52,
+                            weight: .semibold
+                        )
+                    )
+                    .symbolRenderingMode(
+                        .hierarchical
+                    )
 
                 Text("VPN")
                     .font(
@@ -34,23 +38,19 @@ struct ContentView: View {
                             design: .rounded
                         )
                     )
+
+                Text("Manual Test Mode")
+                    .font(.caption)
             }
             .foregroundStyle(.white)
             .padding(.horizontal, 60)
             .padding(.vertical, 44)
             .glassEffect(
                 .regular,
-                in: .rect(cornerRadius: 36)
+                in: .rect(
+                    cornerRadius: 36
+                )
             )
-        }
-        .onChange(of: scenePhase) { _, phase in
-
-            if phase == .active {
-
-                Task {
-                    await VPNActivityManager.shared.toggle()
-                }
-            }
         }
     }
 }
