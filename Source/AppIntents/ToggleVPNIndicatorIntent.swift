@@ -1,14 +1,14 @@
 import AppIntents
 import ActivityKit
 
-struct ToggleVPNIndicatorIntent: AppIntent {
+struct ToggleVPNIndicatorIntent: LiveActivityIntent {
 
     static let title: LocalizedStringResource =
         "Toggle VPN Indicator"
 
     static let description =
         IntentDescription(
-            "Creates VPN Live Activity directly from App Intent."
+            "Starts or stops VPN Live Activity."
         )
 
     func perform() async throws -> some IntentResult {
