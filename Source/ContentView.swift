@@ -2,6 +2,9 @@ import SwiftUI
 
 struct ContentView: View {
 
+    @Environment(\.scenePhase)
+    private var scenePhase
+
     @Environment(\.openURL)
     private var openURL
 
@@ -38,16 +41,39 @@ struct ContentView: View {
                             design: .rounded
                         )
                     )
+
+                Text("Indicator")
+                    .font(
+                        .system(
+                            size: 20,
+                            weight: .medium,
+                            design: .rounded
+                        )
+                    )
             }
             .foregroundStyle(.white)
+            .padding(.horizontal, 60)
+            .padding(.vertical, 44)
+            .background(
+                Color.black.opacity(0.25)
+            )
+            .glassEffect(
+                .regular,
+                in: .rect(
+                    cornerRadius: 36
+                )
+            )
         }
-        .task {
+        .onChange(of: scenePhase) { _, phase in
 
-            if let url = URL(
-                string: "https://apple.com"
-            ) {
+            if phase == .active {
 
-                openURL(url)
+                if let url = URL(
+                    string: "https://apple.com"
+                ) {
+
+                    openURL(url)
+                }
             }
         }
     }
