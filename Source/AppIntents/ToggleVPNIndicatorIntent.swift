@@ -1,4 +1,5 @@
 import AppIntents
+import UserNotifications
 
 struct ToggleVPNIndicatorIntent: AppIntent {
 
@@ -7,12 +8,34 @@ struct ToggleVPNIndicatorIntent: AppIntent {
 
     static let description =
         IntentDescription(
-            "Turns VPN Live Activity on or off."
+            "Tests whether App Intent is actually executed."
         )
 
     func perform() async throws -> some IntentResult {
 
-        await VPNActivityManager.shared.toggle()
+        let center =
+            UNUserNotificationCenter.current()
+
+        let content =
+            UNMutableNotificationContent()
+
+        content.title =
+            "VPN Indicator"
+
+        content.body =
+            "AppIntent executed successfully"
+
+        content.sound =
+            .default
+
+        let request =
+            UNNotificationRequest(
+                identifier: UUID().uuidString,
+                content: content,
+                trigger: nil
+            )
+
+        try await center.add(request)
 
         return .result()
     }
