@@ -7,13 +7,13 @@ struct ToggleVPNIndicatorIntent: AppIntent {
 
     static let description =
         IntentDescription(
-            "Opens VPN Indicator"
+            "Turns VPN Live Activity on or off."
         )
 
     func perform() async throws -> some IntentResult {
 
-        return .result(
-            opensIntent: OpenVPNIndicatorIntent()
-        )
+        await VPNActivityManager.shared.toggle()
+
+        return .result()
     }
 }
