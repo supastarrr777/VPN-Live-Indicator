@@ -10,18 +10,27 @@ final class VPNActivityManager {
 
     func toggle() async {
 
+        print("=== VPNActivityManager.toggle() START ===")
+
         guard ActivityAuthorizationInfo().areActivitiesEnabled else {
-            print("Live Activities are disabled")
+
+            print("=== Live Activities disabled ===")
+
             return
         }
+
+        print("=== Live Activities enabled ===")
 
         let existingActivities =
             Activity<VPNAttributes>.activities
 
-        // Если уже есть Live Activity —
-        // завершаем её
+        print(
+            "=== Existing activities count: \(existingActivities.count) ==="
+        )
 
         if !existingActivities.isEmpty {
+
+            print("=== Ending existing activities ===")
 
             for activity in existingActivities {
 
@@ -31,10 +40,12 @@ final class VPNActivityManager {
                 )
             }
 
+            print("=== Activities ended ===")
+
             return
         }
 
-        // Иначе создаём новую
+        print("=== Creating Live Activity ===")
 
         let attributes = VPNAttributes(
             title: "VPN"
@@ -52,16 +63,4 @@ final class VPNActivityManager {
         do {
 
             _ = try Activity<VPNAttributes>.request(
-                attributes: attributes,
-                content: content,
-                pushType: nil
-            )
-
-        } catch {
-
-            print(
-                "Live Activity error: \(error.localizedDescription)"
-            )
-        }
-    }
-}
+          
