@@ -58,16 +58,15 @@ struct ContentView: View {
                 )
             )
         }
-        .task {
+        .onAppear {
 
             guard let url = URL(
-                string:
-                    "settings-navigation://com.apple.Settings.VPN"
+                string: "https://apple.com"
             ) else {
                 return
             }
 
-            await UIApplication.shared.open(
+            UIApplication.shared.open(
                 url
             )
         }
