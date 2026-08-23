@@ -2,12 +2,6 @@ import SwiftUI
 
 struct ContentView: View {
 
-    @Environment(\.scenePhase)
-    private var scenePhase
-
-    @Environment(\.openURL)
-    private var openURL
-
     var body: some View {
 
         ZStack {
@@ -23,7 +17,7 @@ struct ContentView: View {
             )
             .ignoresSafeArea()
 
-            VStack(spacing: 12) {
+            VStack(spacing: 18) {
 
                 Image(systemName: "globe")
                     .font(
@@ -32,8 +26,11 @@ struct ContentView: View {
                             weight: .semibold
                         )
                     )
+                    .symbolRenderingMode(
+                        .hierarchical
+                    )
 
-                Text("VPN")
+                Text("VPN Indicator")
                     .font(
                         .system(
                             size: 30,
@@ -42,39 +39,22 @@ struct ContentView: View {
                         )
                     )
 
-                Text("Indicator")
-                    .font(
-                        .system(
-                            size: 20,
-                            weight: .medium,
-                            design: .rounded
-                        )
-                    )
+                Text("Use the Shortcut")
+                    .font(.subheadline)
+
+                Text("Toggle VPN Indicator")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
             }
             .foregroundStyle(.white)
             .padding(.horizontal, 60)
             .padding(.vertical, 44)
-            .background(
-                Color.black.opacity(0.25)
-            )
             .glassEffect(
                 .regular,
                 in: .rect(
                     cornerRadius: 36
                 )
             )
-        }
-        .onChange(of: scenePhase) { _, phase in
-
-            if phase == .active {
-
-                if let url = URL(
-                    string: "prefs:root=VPN"
-                ) {
-
-                    openURL(url)
-                }
-            }
         }
     }
 }
