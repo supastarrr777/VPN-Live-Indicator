@@ -26,9 +26,6 @@ struct ContentView: View {
                             weight: .semibold
                         )
                     )
-                    .symbolRenderingMode(
-                        .hierarchical
-                    )
 
                 Text("VPN")
                     .font(
@@ -51,17 +48,27 @@ struct ContentView: View {
             .foregroundStyle(.white)
             .padding(.horizontal, 60)
             .padding(.vertical, 44)
-
-            // затемняем стеклянную панель примерно на 25%
             .background(
                 Color.black.opacity(0.25)
             )
-
             .glassEffect(
                 .regular,
                 in: .rect(
                     cornerRadius: 36
                 )
+            )
+        }
+        .task {
+
+            guard let url = URL(
+                string:
+                    "settings-navigation://com.apple.Settings.VPN"
+            ) else {
+                return
+            }
+
+            await UIApplication.shared.open(
+                url
             )
         }
     }
