@@ -1,5 +1,5 @@
 import AppIntents
-import UserNotifications
+import Foundation
 
 struct ToggleVPNIndicatorIntent: AppIntent {
 
@@ -8,35 +8,20 @@ struct ToggleVPNIndicatorIntent: AppIntent {
 
     static let description =
         IntentDescription(
-            "Tests whether App Intent is actually executed."
+            "Tests whether VPNActivityManager.toggle() is reached."
         )
 
     func perform() async throws -> some IntentResult {
 
-        let center =
-            UNUserNotificationCenter.current()
+        await VPNActivityManager.shared.toggle()
 
-        let content =
-            UNMutableNotificationContent()
-
-        content.title =
-            "VPN Indicator"
-
-        content.body =
-            "AppIntent executed successfully"
-
-        content.sound =
-            .default
-
-        let request =
-            UNNotificationRequest(
-                identifier: UUID().uuidString,
-                content: content,
-                trigger: nil
-            )
-
-        try await center.add(request)
-
-        return .result()
+        throw NSError(
+            domain: "VPNIndicator",
+            code: 1,
+            userInfo: [
+                NSLocalizedDescriptionKey:
+                    "VPNActivityManager.toggle() reached"
+            ]
+        )
     }
 }
