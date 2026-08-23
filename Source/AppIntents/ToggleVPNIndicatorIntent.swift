@@ -2,10 +2,10 @@ import AppIntents
 
 struct ToggleVPNIndicatorIntent: AppIntent {
 
-    static var title: LocalizedStringResource =
+    static let title: LocalizedStringResource =
         "Toggle VPN Indicator"
 
-    static var description =
+    static let description =
         IntentDescription(
             "Turns VPN Live Activity on or off."
         )
@@ -17,3 +17,4 @@ struct ToggleVPNIndicatorIntent: AppIntent {
         return .result()
     }
 }
+`
