@@ -1,5 +1,4 @@
 import AppIntents
-import Foundation
 
 struct ToggleVPNIndicatorIntent: AppIntent {
 
@@ -8,20 +7,13 @@ struct ToggleVPNIndicatorIntent: AppIntent {
 
     static let description =
         IntentDescription(
-            "Tests whether VPNActivityManager.toggle() is reached."
+            "Turns VPN Live Activity on or off."
         )
 
     func perform() async throws -> some IntentResult {
 
         await VPNActivityManager.shared.toggle()
 
-        throw NSError(
-            domain: "VPNIndicator",
-            code: 1,
-            userInfo: [
-                NSLocalizedDescriptionKey:
-                    "VPNActivityManager.toggle() reached"
-            ]
-        )
+        return .result()
     }
 }
