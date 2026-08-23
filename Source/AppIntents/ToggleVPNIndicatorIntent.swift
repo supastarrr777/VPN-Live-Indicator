@@ -17,4 +17,3 @@ struct ToggleVPNIndicatorIntent: AppIntent {
         return .result()
     }
 }
-`
