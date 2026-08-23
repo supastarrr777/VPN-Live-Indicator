@@ -1,10 +1,6 @@
 import SwiftUI
-import UIKit
 
 struct ContentView: View {
-
-    @Environment(\.scenePhase)
-    private var scenePhase
 
     var body: some View {
 
@@ -58,23 +54,6 @@ struct ContentView: View {
                     cornerRadius: 36
                 )
             )
-        }
-        .onChange(of: scenePhase) { _, phase in
-
-            if phase == .active {
-
-                guard let url = URL(
-                    string: "prefs:root=VPN"
-                ) else {
-                    return
-                }
-
-                UIApplication.shared.open(
-                    url,
-                    options: [:],
-                    completionHandler: nil
-                )
-            }
         }
     }
 }
